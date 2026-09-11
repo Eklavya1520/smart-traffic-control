@@ -207,6 +207,14 @@ Tested against synthetic traffic patterns simulating a 4-way intersection:
 | Containerization | Docker + Docker Compose |
 
 ---
+SCREENSHOTS
+<img width="1906" height="908" alt="Screenshot 2026-09-11 230714" src="https://github.com/user-attachments/assets/8c512385-703c-45c5-ab15-6cb2fb0860d4" />
+<img width="1901" height="785" alt="Screenshot 2026-09-11 230735" src="https://github.com/user-attachments/assets/b5595074-66c5-4658-acf9-39a2cb9f197a" />
+<img width="1862" height="616" alt="Screenshot 2026-09-11 230748" src="https://github.com/user-attachments/assets/dcfbd388-5970-4bcb-84f0-5dd75dafb9e1" />
+<img width="1896" height="751" alt="Screenshot 2026-09-11 230757" src="https://github.com/user-attachments/assets/1713a628-c1cf-4489-a828-5fae35ba7efe" />
+<img width="1902" height="908" alt="Screenshot 2026-09-11 230808" src="https://github.com/user-attachments/assets/76f8de1f-1a40-4fea-a7cf-548b4a259a2d" />
+<img width="1862" height="847" alt="Screenshot 2026-09-11 230849" src="https://github.com/user-attachments/assets/a98b1d17-6854-485e-8221-c93a9bb56ae9" />
+
 
 ## License
 
