@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Activity, Clock, ShieldAlert, Cpu, Video, Map, Sliders, BarChart3 } from 'lucide-react';
+import { Activity, Clock, ShieldAlert, Cpu, Globe2, Map, Sliders, BarChart3, Radio } from 'lucide-react';
 import IntersectionCard from '../IntersectionCard/IntersectionCard';
 import TrafficChart from '../TrafficChart/TrafficChart';
 import AlertPanel from '../AlertPanel/AlertPanel';
-import CctvFeed from '../CctvFeed/CctvFeed';
+import SatelliteView from '../SatelliteView/SatelliteView';
 import InteractiveMap from '../InteractiveMap/InteractiveMap';
 import SimulationControls from '../SimulationControls/SimulationControls';
 import { triggerManualOverride } from '../../services/api';
@@ -20,7 +20,7 @@ export default function Dashboard({
   onSimulateAlert,
   onResetSystem
 }) {
-  const [activeTab, setActiveTab] = useState('ALL'); // 'ALL', 'CCTV', 'MAP', 'ANALYTICS'
+  const [activeTab, setActiveTab] = useState('ALL'); // 'ALL', 'SATELLITE', 'MAP', 'ANALYTICS'
 
   const activeInt = intersections?.find((i) => i.intersectionId === activeIntersectionId) || intersections?.[0];
 
@@ -72,7 +72,7 @@ export default function Dashboard({
           <div className="stat-value" style={{ color: 'var(--accent-indigo)' }}>
             {intersections?.length || 3} Nodes
           </div>
-          <div className="stat-highlight">100% camera stream uptime</div>
+          <div className="stat-highlight">100% satellite & optical sync uptime</div>
         </div>
 
         <div className="stat-card">
@@ -83,7 +83,7 @@ export default function Dashboard({
           <div className="stat-value" style={{ color: unresolvedAlertCount > 0 ? 'var(--accent-amber)' : 'var(--accent-emerald)' }}>
             {unresolvedAlertCount}
           </div>
-          <div className="stat-highlight">Auto-recovery enabled</div>
+          <div className="stat-highlight">Auto-recovery Webster active</div>
         </div>
       </div>
 
@@ -97,18 +97,18 @@ export default function Dashboard({
           <span>Full Operations Center</span>
         </button>
         <button
-          onClick={() => setActiveTab('CCTV')}
-          className={`view-tab-btn ${activeTab === 'CCTV' ? 'active' : ''}`}
+          onClick={() => setActiveTab('SATELLITE')}
+          className={`view-tab-btn ${activeTab === 'SATELLITE' ? 'active' : ''}`}
         >
-          <Video size={15} />
-          <span>Live CCTV & AI Vision Feed</span>
+          <Globe2 size={15} />
+          <span>Google Maps Satellite View</span>
         </button>
         <button
           onClick={() => setActiveTab('MAP')}
           className={`view-tab-btn ${activeTab === 'MAP' ? 'active' : ''}`}
         >
           <Map size={15} />
-          <span>Interactive GIS Map</span>
+          <span>City GIS Network</span>
         </button>
         <button
           onClick={() => setActiveTab('ANALYTICS')}
@@ -127,15 +127,16 @@ export default function Dashboard({
         onResetSystem={onResetSystem}
       />
 
-      {/* CCTV & AI Vision Feed */}
-      {(activeTab === 'ALL' || activeTab === 'CCTV') && (
-        <CctvFeed
+      {/* Live Google Maps Satellite & Traffic Flow View */}
+      {(activeTab === 'ALL' || activeTab === 'SATELLITE') && (
+        <SatelliteView
           intersection={activeInt}
           latestTelemetry={latestTelemetry}
+          onSelectIntersection={onSelectIntersection}
         />
       )}
 
-      {/* Interactive Map View */}
+      {/* Interactive City GIS Map View */}
       {(activeTab === 'ALL' || activeTab === 'MAP') && (
         <InteractiveMap
           intersections={intersections}
