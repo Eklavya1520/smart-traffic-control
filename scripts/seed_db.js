@@ -1,12 +1,12 @@
-﻿/**
+/**
  * seed_db.js
  * Populates MongoDB with default intersection geometries and historical baseline data.
  */
 
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
-
-dotenv.config({ path: '../.env' });
+const mongoose = require('../server/node_modules/mongoose');
+const path = require('path');
+const dotenv = require('../server/node_modules/dotenv');
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const Intersection = require('../server/src/models/Intersection');
 const Alert = require('../server/src/models/Alert');

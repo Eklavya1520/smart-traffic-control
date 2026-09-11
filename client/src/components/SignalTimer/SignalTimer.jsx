@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Timer, ArrowUpDown, ArrowLeftRight } from 'lucide-react';
 
 export default function SignalTimer({ signalPlan }) {

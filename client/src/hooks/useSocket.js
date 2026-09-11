@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { io } from 'socket.io-client';
 
 const SOCKET_SERVER_URL = process.env.REACT_APP_SOCKET_URL || 'http://localhost:4000';

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { AlertTriangle, CheckCircle, Clock } from 'lucide-react';
 
 export default function AlertPanel({ alerts, onResolve }) {

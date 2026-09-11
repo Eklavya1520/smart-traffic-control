@@ -1,5 +1,5 @@
-﻿import React from 'react';
-import { Activity, Radio, Cpu, Bell } from 'lucide-react';
+import React from 'react';
+import { Activity, Wifi, Cpu, Bell } from 'lucide-react';
 
 export default function Header({ isConnected, alertCount, onOpenAlerts }) {
   return (
@@ -17,6 +17,7 @@ export default function Header({ isConnected, alertCount, onOpenAlerts }) {
       <div className="header-status-group">
         <div className="status-pill">
           <span className={`pulse-dot ${isConnected ? '' : 'disconnected'}`}></span>
+          <Wifi size={14} style={{ display: 'inline', marginRight: '4px' }} />
           <span>{isConnected ? 'WEBSOCKET: LIVE' : 'CONNECTING...'}</span>
         </div>
 

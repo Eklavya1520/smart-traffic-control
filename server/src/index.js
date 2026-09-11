@@ -1,9 +1,10 @@
-﻿/**
+/**
  * index.js
  * Main entry point for the Smart Traffic Control Node.js & Socket.IO server.
  */
 
 const http = require('http');
+const path = require('path');
 const express = require('express');
 const { Server } = require('socket.io');
 const cors = require('cors');
@@ -27,7 +28,7 @@ const server = http.createServer(app);
 // Configure Socket.IO
 const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
+    origin: '*',
     methods: ['GET', 'POST'],
     credentials: true,
   },
@@ -37,12 +38,14 @@ app.set('io', io);
 setupSocketIO(io);
 
 // Middleware
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false,
+}));
 app.use(cors({ origin: '*' }));
 app.use(express.json());
 app.use(morgan('dev'));
 
-// Routes
+// API Routes
 app.use('/api/traffic', require('./routes/trafficRoutes'));
 app.use('/api/intersections', require('./routes/intersectionRoutes'));
 app.use('/api/alerts', require('./routes/alertRoutes'));
@@ -57,6 +60,17 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Serve frontend static build
+const clientBuildPath = path.join(__dirname, '../../client/build');
+app.use(express.static(clientBuildPath));
+
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api')) {
+    return next();
+  }
+  res.sendFile(path.join(clientBuildPath, 'index.html'));
+});
+
 // Error handling middleware
 app.use(errorHandler);
 
@@ -67,7 +81,8 @@ const PORT = process.env.PORT || 4000;
 server.listen(PORT, () => {
   console.log(`=======================================================`);
   console.log(` Smart Traffic Control Server listening on port ${PORT}`);
-  console.log(` Environment : ${process.env.NODE_ENV || 'development'}`);
-  console.log(` WebSocket   : Active`);
+  console.log(` Web Dashboard : http://localhost:${PORT}`);
+  console.log(` REST API      : http://localhost:${PORT}/api`);
+  console.log(` WebSocket     : Active (Socket.IO)`);
   console.log(`=======================================================`);
 });

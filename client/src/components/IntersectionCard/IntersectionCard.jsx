@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { MapPin, TrendingUp, Sliders, ShieldCheck } from 'lucide-react';
 import SignalTimer from '../SignalTimer/SignalTimer';
 
