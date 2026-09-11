@@ -12,7 +12,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
 
-dotenv.config({ path: '../.env' });
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 const connectDB = require('./config/db');
 const errorHandler = require('./middleware/errorHandler');
